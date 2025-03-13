@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Supervisado - {{ caso.titulo }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>{{ caso.titulo }}</h1>
+    <p>{{ caso.descripcion }}</p>
+    <h3>Algoritmo Utilizado: {{ caso.algoritmo }}</h3>
+    <h3>Beneficios:</h3>
+    <ul>
+        {% for beneficio in caso.beneficios %}
+            <li>{{ beneficio }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Ejemplo de Empresa:</h3>
+    <p>{{ caso.ejemplo_empresa }}</p>
+</body>
+</html>
+
