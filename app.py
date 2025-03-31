@@ -19,5 +19,18 @@ caso_uso = {
 def home():
     return render_template("index.html", caso=caso_uso)
 
+@app.route('/calculategrades/', methods=["GET", "POST"])
+def calculategrades():
+    def generate_plot():
+        result = None
+        img_data = generate_plot()
+        
+        if request.method == 'POST':
+            hours = float(request.form['hours'])
+            prediction = model.predict([[hours]])[0]
+            result = round(prediction, 2)
+        
+        return render_template('calculategrades.html', result=result, img_data=img_data)
+
 if __name__ == "__main__":
     app.run(debug=True)
