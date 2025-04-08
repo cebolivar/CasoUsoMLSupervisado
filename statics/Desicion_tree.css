@@ -1,0 +1,39 @@
+body 
+{
+    background-color: rgba(234, 234, 226, 0.368);
+}
+title 
+{
+    position: relative;
+    width: 250px;
+    color: rgb(53, 3, 140);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: relative;
+    left: 570px;
+    top: 20px;
+}
+h1 {
+    position: relative;
+    width: 250px;
+    color: rgb(53, 3, 140);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+h2 {
+    position: left;
+    width: 250px;
+    left: 570px;
+    text-align: left;
+    FONT-FAMILY:Arial,Helvetica,sans-serif;
+    FONT-SIZE:16px;
+    line-height: 1.5px;
+    color: rgb(0, 0, 0);
+}
+h3 {
+    color: #333;
+}
+h4 {
+    font-style: italic;
+}
