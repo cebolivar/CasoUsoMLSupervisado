@@ -1,25 +1,45 @@
+from multiprocessing import reduction
+from pyexpat import model
+from turtle import towards
+from flask import Flask, render_template, request
+import datetime
+import re
+from matplotlib import dates
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import io
+import base64
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeClassifier
 from flask import Flask, render_template
+import RL
+
 
 app = Flask(__name__)
 
-# Datos de ejemplo (sustituye con información real)
-caso_uso = {
-    "titulo": "Predicción de Fraude en Transacciones Bancarias",
-    "descripcion": "Los bancos utilizan Machine Learning Supervisado para detectar transacciones fraudulentas en tiempo real.",
-    "algoritmo": "Random Forest",
-    "beneficios": [
-        "Reducción de fraudes",
-        "Mayor seguridad en transacciones",
-        "Mejor experiencia para el usuario"
-    ],
-    "ejemplo_empresa": "Visa y Mastercard han implementado modelos de ML para detección de fraudes."
-}
+@app.route("/hello2")
+def home():
+  return"hello, flask"
+
+@app.route("/hello/<name>")
+def hello_there(name):
+    now = datetime.now()
+    #formatted_now = now.strftime ("%A, %d %B, %Y at %X")
+    match_object =re.fullmatch ("[a-zA-Z]+", name)
+    if match_object:
+        clean_name = match_object.group(0)
+    else:
+        clean_name = "friend"
+    content  = f"hello there, {clean_name} hour: {now}"
+    return content
 
 @app.route("/")
-def home():
-    return render_template("index.html", caso=caso_uso)
+def RegresionLogistica():
+    return render_template("RegresionLogistica.html")
 
-@app.route('/calculategrades/', methods=["GET", "POST"])
+
+@app.route('/calculategrades', methods=["GET", "POST"])
 def calculategrades():
     def generate_plot():
         result = None
@@ -32,5 +52,18 @@ def calculategrades():
         
         return render_template('calculategrades.html', result=result, img_data=img_data)
 
-if __name__ == "__main__":
+@app.route("/decision_tree/")
+def decision_tree():
+    return render_template('DecisionTree.html', datos=dates, resultado=reduction)
+
+@app.route("/RL/")
+def RLResult():
+    accuracy, q_table = RL.train_agent()
+    return render_template("RL.html", accuracy = accuracy)
+
+
+if __name__ == '__main__':
     app.run(debug=True)
+
+
+
